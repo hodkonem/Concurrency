@@ -1,14 +1,19 @@
 package ru.latypov;
 
 public class Counter {
+    private Object monitor = new Object();
     private int value;
 
-    public synchronized void increment() {
-        value++;
+    public void increment() {
+        synchronized (monitor) {
+            value++;
+        }
     }
 
-    public synchronized void decrement() {
-        value--;
+    public void decrement() {
+        synchronized (monitor) {
+            value--;
+        }
     }
 
     public int getValue() {
